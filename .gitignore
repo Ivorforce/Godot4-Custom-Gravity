@@ -1,0 +1,10 @@
+# Import cache
+.import/
+
+# Binaries
+bin/
+build/
+lib/
+
+addons/godot-git-plugin
+
