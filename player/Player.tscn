@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://camera/CameraAnchor.gd" type="Script" id=1]
 [ext_resource path="res://camera/CameraJoint.gd" type="Script" id=2]
@@ -6,20 +6,31 @@
 [ext_resource path="res://gravity/BalancePoint.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
+radius = 0.3
+height = 0.3
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.3
+height = 0.3
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.299992, 0, 0, 0, -1.31131e-08, -0.329125, 0, 0.299992, -1.43865e-08, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="CSGCylinder" type="CSGCylinder" parent="."]
 radius = 0.278
 sides = 20
 
-[node name="BalancePoint" type="Spatial" parent="."]
+[node name="BalancePoint" type="Area" parent="."]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="BalancePoint"]
+shape = SubResource( 2 )
 
 [node name="CameraAnchor" type="Spatial" parent="."]
 script = ExtResource( 1 )
@@ -33,3 +44,6 @@ script = ExtResource( 2 )
 current = true
 fov = 90.0
 far = 550.0
+
+[connection signal="area_entered" from="BalancePoint" to="BalancePoint" method="_on_BalancePoint_area_entered"]
+[connection signal="area_exited" from="BalancePoint" to="BalancePoint" method="_on_BalancePoint_area_exited"]

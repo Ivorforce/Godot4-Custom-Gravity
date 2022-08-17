@@ -6,7 +6,7 @@ func _ready () -> void:
 	set_as_toplevel(true)
 
 func _process (_delta: float) -> void:
-	var balance_down := _balance_point.get_down()
+	var balance_down := _balance_point.down
 	var camera_down := -transform.basis.y
 
 	var ortho_vector = balance_down.cross(camera_down).normalized()

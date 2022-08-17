@@ -1,22 +1,25 @@
 class_name BalancePoint extends Spatial
 
-export var default_direction := Vector3.DOWN
-export var default_gravity := 9.81
+var relevant_gravitational_pulls: Array = []
 
-var main_gravitational_pull: GravityWell
+var acceleration: Vector3 = Vector3.ZERO
+var down: Vector3 = Vector3.ZERO
+var up: Vector3 = Vector3.ZERO
 
-func _ready():
-	main_gravitational_pull = get_tree().get_root().find_node("GravityWell", true, false)
+func _physics_process(delta):
+	acceleration = Vector3.ZERO
+	for well in relevant_gravitational_pulls:
+		acceleration += (well as GravityWell).get_acceleration_at(global_transform.origin)
 
-func get_down() -> Vector3:
-	if main_gravitational_pull == null:
-		return default_direction
-	
-	return global_transform.origin \
-		.direction_to(main_gravitational_pull.global_transform.origin) \
+	if acceleration == Vector3.ZERO:
+		down = Vector3.ZERO
+	else:
+		down = acceleration.normalized()
 
-func get_acceleration() -> Vector3:
-	if main_gravitational_pull == null:
-		return default_gravity * default_direction
-	
-	return main_gravitational_pull.get_acceleration_at(global_transform.origin)
+	up = -down
+
+func _on_BalancePoint_area_entered(area):
+	relevant_gravitational_pulls.append(area)
+
+func _on_BalancePoint_area_exited(area):
+	relevant_gravitational_pulls.erase(area)

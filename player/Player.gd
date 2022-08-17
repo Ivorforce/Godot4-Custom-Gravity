@@ -27,9 +27,12 @@ static func get_movement_intention(basis: Basis, up: Vector3, vertical: float, h
 	return up_surface * intention_2d.y + right_surface * intention_2d.x
 
 func _physics_process(delta: float) -> void:
-	var acceleration := _balance_point.get_acceleration()
-	var down := acceleration.normalized()
-	var up = -down
+	var acceleration := _balance_point.acceleration
+	var down := _balance_point.down
+	var up = _balance_point.up
+	
+	if acceleration == Vector3.ZERO:
+		return  # Weeee floating in free space!
 	
 	var movement_intention := get_movement_intention(
 		get_viewport().get_camera().global_transform.basis,
@@ -83,6 +86,6 @@ func _physics_process(delta: float) -> void:
 	# Basis.looking_at is currently not exposed :(
 	var look_intention := Transform.IDENTITY.looking_at(look_intention_horizontal, up).basis
 	transform = Transform(
-		transform.basis.slerp(look_intention, current_torque_control * delta),
+		transform.basis.slerp(look_intention, current_torque_control * delta).orthonormalized(),
 		transform.origin
 	)
