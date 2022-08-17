@@ -12,7 +12,7 @@ export var torque_control_air := 0.0
 var _velocity := Vector3.ZERO
 
 onready var _balance_point: BalancePoint = $BalancePoint
-# onready var _model: Spatial $AstronautSkin
+onready var _camera_anchor: CameraAnchor = $CameraAnchor
 
 static func get_movement_intention(basis: Basis, up: Vector3, vertical: float, horizontal: float) -> Vector3:
 	if (abs(horizontal) + abs(vertical) < 0.01):
@@ -89,3 +89,6 @@ func _physics_process(delta: float) -> void:
 		transform.basis.slerp(look_intention, current_torque_control * delta).orthonormalized(),
 		transform.origin
 	)
+	
+	_camera_anchor.target_down = down
+	_camera_anchor.target_origin = _balance_point.global_transform.origin

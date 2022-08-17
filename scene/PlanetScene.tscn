@@ -11,7 +11,7 @@ radius = 100.0
 [node name="Spatial" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.000900745, 100.494, 0.068177 )
+transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.000900745, 100.892, 0.068177 )
 
 [node name="Planet" type="StaticBody" parent="."]
 

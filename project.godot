@@ -15,12 +15,18 @@ _global_script_classes=[ {
 "path": "res://gravity/BalancePoint.gd"
 }, {
 "base": "Spatial",
+"class": "CameraAnchor",
+"language": "GDScript",
+"path": "res://camera/CameraAnchor.gd"
+}, {
+"base": "Spatial",
 "class": "GravityWell",
 "language": "GDScript",
 "path": "res://gravity/GravityWell.gd"
 } ]
 _global_script_class_icons={
 "BalancePoint": "",
+"CameraAnchor": "",
 "GravityWell": ""
 }
 
