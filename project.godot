@@ -9,24 +9,30 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "",
-"class": "GitAPI",
-"language": "NativeScript",
-"path": "res://addons/godot-git-plugin/git_api.gdns"
+"base": "Spatial",
+"class": "BalancePoint",
+"language": "GDScript",
+"path": "res://gravity/BalancePoint.gd"
+}, {
+"base": "Spatial",
+"class": "GravityWell",
+"language": "GDScript",
+"path": "res://gravity/GravityWell.gd"
 } ]
 _global_script_class_icons={
-"GitAPI": ""
+"BalancePoint": "",
+"GravityWell": ""
 }
 
 [application]
 
-config/name="TestProject"
-run/main_scene="res://PlanetScene.tscn"
-config/icon="res://icon.png"
+config/name="Planetary Movement"
+run/main_scene="res://scene/PlanetScene.tscn"
+config/icon="res://project/icon.png"
 
 [gdnative]
 
-singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
+singletons=[  ]
 
 [global]
 
@@ -71,4 +77,4 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://camera/default_env.tres"

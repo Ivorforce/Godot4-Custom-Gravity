@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://camera/CameraAnchor.gd" type="Script" id=1]
+[ext_resource path="res://camera/CameraJoint.gd" type="Script" id=2]
+[ext_resource path="res://player/Player.gd" type="Script" id=3]
+[ext_resource path="res://gravity/BalancePoint.gd" type="Script" id=4]
+
+[sub_resource type="CapsuleShape" id=1]
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.299992, 0, 0, 0, -1.31131e-08, -0.329125, 0, 0.299992, -1.43865e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+radius = 0.278
+sides = 20
+
+[node name="BalancePoint" type="Spatial" parent="."]
+script = ExtResource( 4 )
+
+[node name="CameraAnchor" type="Spatial" parent="."]
+script = ExtResource( 1 )
+
+[node name="CameraArm" type="SpringArm" parent="CameraAnchor"]
+spring_length = 10.0
+margin = 0.2
+script = ExtResource( 2 )
+
+[node name="Camera" type="Camera" parent="CameraAnchor/CameraArm"]
+current = true
+fov = 90.0
+far = 550.0
