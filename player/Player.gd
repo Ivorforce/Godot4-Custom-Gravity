@@ -31,8 +31,13 @@ func _physics_process(delta: float) -> void:
 	var down := _balance_point.down
 	var up = _balance_point.up
 	
+	_camera_anchor.target_origin = _balance_point.global_transform.origin
+	
 	if acceleration == Vector3.ZERO:
-		return  # Weeee floating in free space!
+		# Weeee floating in free space!
+		# Move tick
+		_velocity = move_and_slide(_velocity, Vector3.UP, true)
+		return  
 	
 	var movement_intention := get_movement_intention(
 		get_viewport().get_camera().global_transform.basis,
@@ -91,4 +96,4 @@ func _physics_process(delta: float) -> void:
 	)
 	
 	_camera_anchor.target_down = down
-	_camera_anchor.target_origin = _balance_point.global_transform.origin
+

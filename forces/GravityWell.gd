@@ -28,7 +28,7 @@ func reconfigure_from_params():
 	(collision_shape.shape as SphereShape).radius = cutoff_distance
 
 func get_acceleration_at_distance(distance: float):
-	var adjusted_distance = max(0, distance - _a)
+	var adjusted_distance = max(0.001, distance - _a)
 	var influence = min(1, _b / (adjusted_distance * adjusted_distance))
 	return influence * max_acceleration
 
