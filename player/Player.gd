@@ -7,7 +7,7 @@ export var velocity_control_floor := 50.0
 export var velocity_control_air := 10.0
 
 export var torque_control_floor := 10.0
-export var torque_control_air := 0.0
+export var torque_control_air := 1.0
 
 var _velocity := Vector3.ZERO
 

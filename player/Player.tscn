@@ -3,7 +3,7 @@
 [ext_resource path="res://camera/CameraAnchor.gd" type="Script" id=1]
 [ext_resource path="res://camera/CameraJoint.gd" type="Script" id=2]
 [ext_resource path="res://player/Player.gd" type="Script" id=3]
-[ext_resource path="res://gravity/BalancePoint.gd" type="Script" id=4]
+[ext_resource path="res://forces/BalancePoint.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.3
@@ -25,8 +25,8 @@ radius = 0.278
 sides = 20
 
 [node name="BalancePoint" type="Area" parent="."]
-collision_layer = 2
-collision_mask = 4
+collision_layer = 0
+collision_mask = 2
 script = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="BalancePoint"]

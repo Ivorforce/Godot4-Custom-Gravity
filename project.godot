@@ -12,17 +12,17 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "BalancePoint",
 "language": "GDScript",
-"path": "res://gravity/BalancePoint.gd"
+"path": "res://forces/BalancePoint.gd"
 }, {
 "base": "Spatial",
 "class": "CameraAnchor",
 "language": "GDScript",
 "path": "res://camera/CameraAnchor.gd"
 }, {
-"base": "Spatial",
+"base": "Reference",
 "class": "GravityWell",
 "language": "GDScript",
-"path": "res://gravity/GravityWell.gd"
+"path": "res://forces/GravityWell.gd"
 } ]
 _global_script_class_icons={
 "BalancePoint": "",
@@ -79,9 +79,8 @@ jump={
 
 [layer_names]
 
-3d_physics/layer_1="physical"
-3d_physics/layer_2="balance_point"
-3d_physics/layer_3="gravity_well"
+3d_physics/layer_1="physical_touch"
+3d_physics/layer_2="forces"
 
 [physics]
 
