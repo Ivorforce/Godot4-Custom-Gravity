@@ -13,9 +13,9 @@ var _a;
 var _b;
 
 func _ready():
-	reload_from_params();
+	reconfigure_from_params();
 
-func reload_from_params():
+func reconfigure_from_params():
 	var half_falloff_radius = start_radius + half_falloff_offset
 	
 	# 1 = b / (start - a)^2
@@ -28,10 +28,11 @@ func reload_from_params():
 	(collision_shape.shape as SphereShape).radius = cutoff_distance
 
 func get_acceleration_at_distance(distance: float):
-	var normalized_distance = max(0, distance - _a)
-	var influence = min(1, _b / (normalized_distance * normalized_distance))
+	var adjusted_distance = max(0, distance - _a)
+	var influence = min(1, _b / (adjusted_distance * adjusted_distance))
 	return influence * max_acceleration
 
 func get_acceleration_at(position: Vector3):
 	var difference = global_transform.origin - position
-	return difference.normalized() * get_acceleration_at_distance(difference.length())
+	var distance = difference.length()
+	return difference / distance * get_acceleration_at_distance(distance)
