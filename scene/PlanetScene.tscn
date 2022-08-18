@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://forces/GravityWell.gd" type="Script" id=2]
+[ext_resource path="res://camera/EmptySpace.tres" type="Environment" id=3]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereShape" id=3]
 radius = 100.0
 
 [sub_resource type="SphereShape" id=2]
@@ -15,13 +16,13 @@ transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.0009007
 
 [node name="Planet" type="StaticBody" parent="."]
 
-[node name="CSGSphere" type="CSGSphere" parent="Planet"]
+[node name="Mesh" type="CSGSphere" parent="Planet"]
 radius = 100.0
 radial_segments = 100
 rings = 100
 
 [node name="CollisionShape" type="CollisionShape" parent="Planet"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="GravityWell" type="Area" parent="Planet"]
 collision_layer = 2
@@ -37,9 +38,10 @@ shape = SubResource( 2 )
 
 [node name="Sun" type="DirectionalLight" parent="Light"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.454285, 129.014, -0.860413 )
-light_energy = 1.07
-light_indirect_energy = 1.066
 shadow_enabled = true
 
 [node name="BakedLightmap" type="BakedLightmap" parent="Light"]
 extents = Vector3( 20, 10, 30 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Light"]
+environment = ExtResource( 3 )
