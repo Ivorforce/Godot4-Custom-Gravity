@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 		# Weeee floating in free space!
 		# Move tick
 		_velocity = move_and_slide(_velocity, Vector3.UP, true)
-		return  
+		return
 	
 	var movement_intention := get_movement_intention(
 		get_viewport().get_camera().global_transform.basis,
