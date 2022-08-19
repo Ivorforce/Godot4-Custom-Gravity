@@ -1,10 +1,9 @@
-class_name GravityWell extends Spatial
+class_name GravityRing extends Spatial
 
 export var start_radius = 1.0
 export var half_falloff_offset = 10
 export var max_acceleration = 9.81
-
-export var gravity_cutoff = 0.01
+export var ortho_vector := Vector3(1, 0, 0)
 
 onready var collision_shape: CollisionShape = $CollisionShape
 
@@ -22,10 +21,6 @@ func reconfigure_from_params():
 	# 0.5 = b / (halfway - a)^2
 	_a = (start_radius - sqrt(0.5) * half_falloff_radius) / (1 - sqrt(0.5))
 	_b = pow(start_radius - _a, 2);
-	
-	# gravity_cutoff = a / (cutoff_distance - b)^2
-	var cutoff_distance = sqrt(_a / gravity_cutoff) + _b
-	(collision_shape.shape as SphereShape).radius = cutoff_distance
 
 func get_acceleration_at_distance(distance: float) -> float:
 	var adjusted_distance = max(0.001, distance - _a)
@@ -34,5 +29,7 @@ func get_acceleration_at_distance(distance: float) -> float:
 
 func get_acceleration_at(position: Vector3) -> Vector3:
 	var difference = global_transform.origin - position
+	difference -= difference.project(ortho_vector)
+	
 	var distance = difference.length()
 	return difference / distance * get_acceleration_at_distance(distance)

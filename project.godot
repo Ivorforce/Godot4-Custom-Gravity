@@ -20,14 +20,32 @@ _global_script_classes=[ {
 "path": "res://camera/CameraAnchor.gd"
 }, {
 "base": "Spatial",
+"class": "GravityField",
+"language": "GDScript",
+"path": "res://forces/GravityField.gd"
+}, {
+"base": "Spatial",
+"class": "GravityRing",
+"language": "GDScript",
+"path": "res://forces/GravityRing.gd"
+}, {
+"base": "Spatial",
 "class": "GravityWell",
 "language": "GDScript",
 "path": "res://forces/GravityWell.gd"
+}, {
+"base": "Spatial",
+"class": "ScrewGravity",
+"language": "GDScript",
+"path": "res://forces/ScrewGravity.gd"
 } ]
 _global_script_class_icons={
 "BalancePoint": "",
 "CameraAnchor": "",
-"GravityWell": ""
+"GravityField": "",
+"GravityRing": "",
+"GravityWell": "",
+"ScrewGravity": ""
 }
 
 [application]

@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/bit_screwed.obj-b47afa31c54f8cb64fd55c48897910af.mesh"
+
+[deps]
+
+files=[ "res://.import/bit_screwed.obj-b47afa31c54f8cb64fd55c48897910af.mesh" ]
+
+source_file="res://scene/bit_screwed.obj"
+dest_files=[ "res://.import/bit_screwed.obj-b47afa31c54f8cb64fd55c48897910af.mesh", "res://.import/bit_screwed.obj-b47afa31c54f8cb64fd55c48897910af.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
