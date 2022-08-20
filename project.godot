@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://forces/GravityRing.gd"
 }, {
 "base": "Spatial",
+"class": "GravityShaped",
+"language": "GDScript",
+"path": "res://forces/GravityPill.gd"
+}, {
+"base": "Spatial",
 "class": "GravityWell",
 "language": "GDScript",
 "path": "res://forces/GravityWell.gd"
@@ -44,6 +49,7 @@ _global_script_class_icons={
 "CameraAnchor": "",
 "GravityField": "",
 "GravityRing": "",
+"GravityShaped": "",
 "GravityWell": "",
 "ScrewGravity": ""
 }

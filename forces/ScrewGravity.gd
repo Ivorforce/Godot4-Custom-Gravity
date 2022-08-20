@@ -29,5 +29,4 @@ func reconfigure_from_params():
 func get_acceleration_at(position: Vector3) -> Vector3:
 	var difference := position - global_transform.origin
 	var progression := difference.project(_rotation_vector).length() / _distance_per_rotation * 2 * PI
-	print(progression)
 	return (_a * cos(progression) + _b * sin(progression)) * acceleration

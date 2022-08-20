@@ -17,18 +17,18 @@ data = PoolVector3Array( 0, 1, 0, 0, 1, 0, 0, 0.9955, 0.0951, 0, 1, 0, 0.0093, 0
 [node name="Spatial" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.000900745, 98.3064, 0.0681772 )
+transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.000900745, 67.7111, 0.0681772 )
 
 [node name="Planet" type="StaticBody" parent="."]
 
 [node name="Mesh" type="MeshInstance" parent="Planet"]
-transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
+transform = Transform( 70, 0, 0, 0, 70, 0, 0, 0, 70, 0, 0, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("")
 material/0 = SubResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Planet"]
-transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
+transform = Transform( 70, 0, 0, 0, 70, 0, 0, 0, 70, 0, 0, 0 )
 shape = SubResource( 4 )
 
 [node name="GravityWell" type="Area" parent="Planet"]
@@ -36,7 +36,7 @@ collision_layer = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource( 1 )
-start_radius = 100.0
+start_radius = 70.0
 max_acceleration = -9.81
 
 [node name="CollisionShape" type="CollisionShape" parent="Planet/GravityWell"]

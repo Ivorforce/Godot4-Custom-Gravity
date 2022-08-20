@@ -1,38 +1,43 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://forces/GravityWell.gd" type="Script" id=2]
+[ext_resource path="res://forces/GravityPill.gd" type="Script" id=2]
 [ext_resource path="res://camera/EmptySpace.tres" type="Environment" id=3]
 
-[sub_resource type="SphereShape" id=3]
+[sub_resource type="CapsuleMesh" id=3]
 radius = 50.0
+mid_height = 50.0
+radial_segments = 128
+rings = 32
 
-[sub_resource type="SphereShape" id=2]
+[sub_resource type="CapsuleShape" id=4]
+radius = 50.0
+height = 50.0
+
+[sub_resource type="CapsuleShape" id=5]
 
 [node name="Spatial" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.000900745, 50.9251, 0.068177 )
+transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.000900745, 53.1832, 0.068177 )
 
 [node name="Planet" type="StaticBody" parent="."]
 
-[node name="Mesh" type="CSGSphere" parent="Planet"]
-radius = 50.0
-radial_segments = 70
-rings = 70
+[node name="Mesh" type="MeshInstance" parent="Planet"]
+mesh = SubResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Planet"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
-[node name="GravityWell" type="Area" parent="Planet"]
+[node name="GravityShaped" type="Area" parent="Planet"]
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource( 2 )
-start_radius = 50.0
+start_radius = 2.0
 
-[node name="CollisionShape" type="CollisionShape" parent="Planet/GravityWell"]
-shape = SubResource( 2 )
+[node name="InfluenceShape" type="CollisionShape" parent="Planet/GravityShaped"]
+shape = SubResource( 5 )
 
 [node name="Light" type="Spatial" parent="."]
 
