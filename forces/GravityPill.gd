@@ -33,18 +33,22 @@ func get_acceleration_at_distance(distance: float) -> float:
 	var influence = min(1, _b / (adjusted_distance * adjusted_distance))
 	return influence * max_acceleration
 
-func get_all_children(in_node, arr:=[]) -> Array:
-	arr.push_back(in_node)
-	for child in in_node.get_children():
-		arr = get_all_children(child, arr)
-	return arr
+func intersect_ray_only(from: Vector3, to: Vector3, objects: Array) -> Dictionary:
+	var one_off_layer := 1 << 31
+	
+	for object in objects:
+		object.collision_layer |= one_off_layer
+		
+	var intersection := get_world().direct_space_state.intersect_ray(from, to, [], one_off_layer, true, true)
+
+	for object in objects:
+		object.collision_layer ^= one_off_layer
+
+	return intersection
 
 func get_acceleration_at(position: Vector3) -> Vector3:
-	var exclude_objs := get_all_children(get_tree().root)
-	exclude_objs.erase(collision_body)
-	
 	# FIXME What this really needs is a signed distance function. See: https://github.com/godotengine/godot-proposals/issues/5218
-	var collision := get_world().direct_space_state.intersect_ray(position, global_transform.origin, exclude_objs)
+	var collision := intersect_ray_only(position, global_transform.origin, [collision_body])
 	
 	var difference := (collision['position'] as Vector3) - position
 	var distance := difference.length()
