@@ -21,5 +21,5 @@ func get_acceleration_at_distance(distance: float) -> float:
 	var influence = min(1, _b / (adjusted_distance * adjusted_distance))
 	return influence * max_acceleration
 
-func get_distance_for_acceleration(distance: float) -> float:
-	return sqrt(abs(_a / distance)) + _b
+func get_distance_for_acceleration(acceleration: float) -> float:
+	return sqrt(abs(_a / acceleration)) + _b
