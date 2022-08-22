@@ -26,7 +26,7 @@ extents = Vector3( 5, 5, 5 )
 extents = Vector3( 10, 10, 0.05 )
 
 [sub_resource type="BoxShape" id=7]
-extents = Vector3( 10, 10, 5 )
+extents = Vector3( 10, 10, 9 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -72,7 +72,7 @@ start_radius = 55.0
 half_falloff_offset = 0.1
 
 [node name="Ring2" type="StaticBody" parent="."]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -73.5177, 19.5096, 0 )
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -70.1751, -18.4827, -7.39658 )
 
 [node name="Mesh" type="MeshInstance" parent="Ring2"]
 transform = Transform( -2.18557e-06, -50, 0, 50, -2.18557e-06, 0, 0, 0, 50, 0, 0, 0 )
@@ -123,7 +123,7 @@ transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 2.19147e
 shape = SubResource( 5 )
 
 [node name="Screw2" type="StaticBody" parent="."]
-transform = Transform( -1, 0, 0, 0, -1, 0, 0, 0, -1, -27.0983, 37.9863, -1.9419 )
+transform = Transform( -5, 0, 0, 0, -5, 0, 0, 0, -5, -27.0983, 38.0082, -5.8523 )
 
 [node name="Mesh" type="MeshInstance" parent="Screw2"]
 transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 2.4815e-10, 0.00567722, -0.110878 )
@@ -139,7 +139,7 @@ transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, -0.00380
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 6 )
-full_rotation_vector = Vector3( 0, -40, 0 )
+full_rotation_vector = Vector3( 0, -200, 0 )
 start_down = Vector3( 0, 0, 1 )
 is_clockwise = false
 
@@ -165,4 +165,5 @@ script = ExtResource( 7 )
 acceleration_vector = Vector3( 0, 0, 9.81 )
 
 [node name="BoundingShape" type="CollisionShape" parent="Floor1/GravityWell"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.9593 )
 shape = SubResource( 7 )
