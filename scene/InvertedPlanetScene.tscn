@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://forces/GravityWell.gd" type="Script" id=1]
+[ext_resource path="res://forces/PointGravity.gd" type="Script" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://camera/Empty.tres" type="Environment" id=3]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://forces/GravityPill.gd" type="Script" id=2]
+[ext_resource path="res://forces/ShapeGravity.gd" type="Script" id=2]
 [ext_resource path="res://camera/EmptySpace.tres" type="Environment" id=3]
+[ext_resource path="res://forces/GravityFalloffModelShifted.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleMesh" id=3]
 radius = 50.0
@@ -30,15 +31,19 @@ mesh = SubResource( 3 )
 [node name="CollisionShape" type="CollisionShape" parent="Planet"]
 shape = SubResource( 4 )
 
-[node name="GravityPill" type="Area" parent="Planet"]
+[node name="GravityWell" type="Area" parent="Planet"]
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource( 2 )
-start_radius = 2.0
 
-[node name="InfluenceShape" type="CollisionShape" parent="Planet/GravityPill"]
+[node name="BoundingShape" type="CollisionShape" parent="Planet/GravityWell"]
+transform = Transform( 1, 0, 0, -2.98023e-08, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 5 )
+
+[node name="FalloffModel" type="Node" parent="Planet/GravityWell"]
+script = ExtResource( 4 )
+start_radius = 2.0
 
 [node name="Light" type="Spatial" parent="."]
 

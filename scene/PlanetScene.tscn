@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://forces/GravityWell.gd" type="Script" id=2]
+[ext_resource path="res://forces/PointGravity.gd" type="Script" id=2]
 [ext_resource path="res://camera/EmptySpace.tres" type="Environment" id=3]
+[ext_resource path="res://forces/GravityFalloffModelShifted.gd" type="Script" id=4]
 
 [sub_resource type="SphereShape" id=3]
 radius = 50.0
@@ -29,10 +30,13 @@ collision_layer = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource( 2 )
-start_radius = 50.0
 
-[node name="CollisionShape" type="CollisionShape" parent="Planet/GravityWell"]
+[node name="BoundingShape" type="CollisionShape" parent="Planet/GravityWell"]
 shape = SubResource( 2 )
+
+[node name="FalloffModel" type="Node" parent="Planet/GravityWell"]
+script = ExtResource( 4 )
+start_radius = 52.0
 
 [node name="Light" type="Spatial" parent="."]
 

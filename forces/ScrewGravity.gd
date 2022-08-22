@@ -11,8 +11,6 @@ var _distance_per_rotation: float
 var _a: Vector3
 var _b: Vector3
 
-onready var collision_shape: CollisionShape = $CollisionShape
-
 func _ready():
 	reconfigure_from_params();
 
