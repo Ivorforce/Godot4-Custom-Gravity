@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://forces/ShapeGravity.gd" type="Script" id=2]
@@ -12,6 +12,10 @@ radial_segments = 128
 rings = 32
 
 [sub_resource type="CapsuleShape" id=4]
+radius = 50.0
+height = 50.0
+
+[sub_resource type="CapsuleShape" id=6]
 radius = 50.0
 height = 50.0
 
@@ -36,6 +40,7 @@ collision_layer = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource( 2 )
+inner_shape = SubResource( 6 )
 
 [node name="BoundingShape" type="CollisionShape" parent="Planet/GravityWell"]
 transform = Transform( 1, 0, 0, -2.98023e-08, 1, 0, 0, 0, 1, 0, 0, 0 )
