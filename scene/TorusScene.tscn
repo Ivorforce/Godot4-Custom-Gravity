@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://shapes/torus.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://scene/donut.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://camera/EmptySpace.tres" type="Environment" id=3]
 [ext_resource path="res://forces/GravityFalloffModelShifted.gd" type="Script" id=4]
 [ext_resource path="res://forces/TorusGravity.gd" type="Script" id=5]
@@ -17,7 +17,6 @@ data = PoolVector3Array( 64.9217, 0, -3.1894, 65, 0, 0, 64.8496, 1.4703, -3.1858
 transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, -0.309776, 16.6123, 49.4552 )
 
 [node name="Planet" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Mesh" type="MeshInstance" parent="Planet"]
 mesh = ExtResource( 2 )

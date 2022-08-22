@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/donut.obj-1793220a19959ccd3abe9ef3f292ab66.mesh"
+
+[deps]
+
+files=[ "res://.import/donut.obj-1793220a19959ccd3abe9ef3f292ab66.mesh" ]
+
+source_file="res://scene/donut.obj"
+dest_files=[ "res://.import/donut.obj-1793220a19959ccd3abe9ef3f292ab66.mesh", "res://.import/donut.obj-1793220a19959ccd3abe9ef3f292ab66.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
