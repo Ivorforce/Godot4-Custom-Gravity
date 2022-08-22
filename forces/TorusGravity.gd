@@ -5,12 +5,13 @@ const TorusShape = preload("res://shapes/TorusShape.gd")
 
 export var gravity_cutoff = 0.01
 
+# Can't export TorusShape because of https://github.com/godotengine/godot-proposals/issues/18
 var inner_shape: TorusShape
-onready var bounding_shape: CollisionShape = $BoundingShape
-onready var falloff_model = $FalloffModel
-
 export var major_radius := 50
 export var minor_radius := 15
+
+onready var bounding_shape: CollisionShape = $BoundingShape
+onready var falloff_model = $FalloffModel
 
 func _ready():
 	inner_shape = TorusShape.new()
@@ -22,9 +23,6 @@ func _ready():
 
 func reconfigure_from_params():
 	falloff_model.reconfigure_from_params()
-	
-	if inner_shape == null:
-		return
 	
 	# gravity_cutoff = a / (cutoff_distance - b)^2
 	var cutoff_distance = falloff_model.get_distance_for_acceleration(gravity_cutoff)

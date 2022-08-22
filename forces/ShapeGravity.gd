@@ -1,7 +1,5 @@
 extends Spatial
 
-const TorusShape = preload("res://shapes/TorusShape.gd")
-
 export var gravity_cutoff = 0.01
 
 export var inner_shape: Shape
@@ -14,16 +12,12 @@ func _ready():
 func reconfigure_from_params():
 	falloff_model.reconfigure_from_params()
 	
-	if inner_shape == null:
-		return
-	
 	# gravity_cutoff = a / (cutoff_distance - b)^2
 	var cutoff_distance = falloff_model.get_distance_for_acceleration(gravity_cutoff)
 	
 	if inner_shape is CapsuleShape:
 		(bounding_shape.shape as CapsuleShape).radius = (inner_shape as CapsuleShape).radius + cutoff_distance
-	if inner_shape is TorusShape:
-		(bounding_shape.shape as SphereShape).radius = (inner_shape as TorusShape).ring_radius + (inner_shape as TorusShape).volume_radius + cutoff_distance
+	# TODO Support for other shapes
 	else:
 		assert(false, "Not a supported shape.");
 	
@@ -32,6 +26,7 @@ func find_closest_surface_point(position: Vector3) -> Vector3:
 	
 	if inner_shape is CapsuleShape:
 		return global_transform * find_closest_surface_point_capsule(p, inner_shape as CapsuleShape)
+	# TODO Support for other shapes
 	else:
 		assert(false, "Not a supported shape.");
 		return Vector3.ZERO
