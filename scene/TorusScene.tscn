@@ -14,9 +14,10 @@ data = PoolVector3Array( 64.9217, 0, -3.1894, 65, 0, 0, 64.8496, 1.4703, -3.1858
 [node name="Spatial" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, -0.309776, 16.6123, 49.4552 )
+transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 35.0598, 42.4644, 19.4148 )
 
 [node name="Planet" type="StaticBody" parent="."]
+transform = Transform( 0.786429, -0.537635, 0.304101, 0.465501, 0.839478, 0.280333, -0.406003, -0.0789023, 0.910459, 0, 0, 0 )
 
 [node name="Mesh" type="MeshInstance" parent="Planet"]
 mesh = ExtResource( 2 )
@@ -38,7 +39,7 @@ shape = SubResource( 7 )
 script = ExtResource( 4 )
 start_radius = 2.0
 
-[node name="Light" type="Spatial" parent="."]
+[node name="Light" type="Node" parent="."]
 
 [node name="Sun" type="DirectionalLight" parent="Light"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.454285, 129.014, -0.860413 )

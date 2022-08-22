@@ -38,7 +38,7 @@ shape = SubResource( 2 )
 script = ExtResource( 4 )
 start_radius = 52.0
 
-[node name="Light" type="Spatial" parent="."]
+[node name="Light" type="Node" parent="."]
 
 [node name="Sun" type="DirectionalLight" parent="Light"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.454285, 129.014, -0.860413 )

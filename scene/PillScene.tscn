@@ -24,10 +24,10 @@ height = 50.0
 [node name="Spatial" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.000900745, 53.1832, 0.068177 )
+transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.000900745, 63.7099, 0.068177 )
 
 [node name="Planet" type="StaticBody" parent="."]
-transform = Transform( 0.871975, 0.125103, -0.473295, 0.0738639, 0.922108, 0.379818, 0.483945, -0.366151, 0.794815, 0, 0, 8.27578 )
+transform = Transform( 0.764803, 0.640426, 0.0702159, -0.465575, 0.474058, 0.747334, 0.445326, -0.604254, 0.660728, 0, 0, 8.27578 )
 
 [node name="Mesh" type="MeshInstance" parent="Planet"]
 mesh = SubResource( 3 )
@@ -50,14 +50,14 @@ shape = SubResource( 5 )
 script = ExtResource( 4 )
 start_radius = 2.0
 
-[node name="Light" type="Spatial" parent="."]
+[node name="Node" type="Node" parent="."]
 
-[node name="Sun" type="DirectionalLight" parent="Light"]
+[node name="Sun" type="DirectionalLight" parent="Node"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.454285, 129.014, -0.860413 )
 shadow_enabled = true
 
-[node name="BakedLightmap" type="BakedLightmap" parent="Light"]
+[node name="BakedLightmap" type="BakedLightmap" parent="Node"]
 extents = Vector3( 20, 10, 30 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Light"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Node"]
 environment = ExtResource( 3 )
