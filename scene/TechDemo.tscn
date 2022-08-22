@@ -68,8 +68,8 @@ shape = SubResource( 8 )
 
 [node name="FalloffModel" type="Node" parent="Ring1/GravityWell"]
 script = ExtResource( 8 )
-start_radius = 52.0
-half_falloff_offset = 1
+start_radius = 55.0
+half_falloff_offset = 0.1
 
 [node name="Ring2" type="StaticBody" parent="."]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -73.5177, 19.5096, 0 )
@@ -95,8 +95,8 @@ shape = SubResource( 8 )
 
 [node name="FalloffModel" type="Node" parent="Ring2/GravityWell"]
 script = ExtResource( 8 )
-start_radius = 52.0
-half_falloff_offset = 1
+start_radius = 50.0
+half_falloff_offset = 0.1
 max_acceleration = -9.81
 
 [node name="Screw1" type="StaticBody" parent="."]
