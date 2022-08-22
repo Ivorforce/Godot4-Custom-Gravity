@@ -9,8 +9,8 @@ export var gravity_cutoff = 0.01
 onready var collision_shape: CollisionShape = $CollisionShape
 
 # g = b / (d - a)^2
-var _a;
-var _b;
+var _a: float
+var _b: float
 
 func _ready():
 	reconfigure_from_params();

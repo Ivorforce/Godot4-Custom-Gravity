@@ -6,12 +6,12 @@ export var max_acceleration = 9.81
 
 export var gravity_cutoff = 0.01
 
-onready var collision_body: CollisionObject = $".."
+onready var collision_shape: CollisionShape = $"../CollisionShape"
 onready var influence_shape: CollisionShape = $InfluenceShape
 
 # g = b / (d - a)^2
-var _a;
-var _b;
+var _a: float
+var _b: float
 
 func _ready():
 	reconfigure_from_params();
@@ -27,29 +27,32 @@ func reconfigure_from_params():
 	# gravity_cutoff = a / (cutoff_distance - b)^2
 	var cutoff_distance = sqrt(abs(_a) / gravity_cutoff) + _b
 	influence_shape.scale = Vector3(cutoff_distance, cutoff_distance, cutoff_distance)
-
+	
 func get_acceleration_at_distance(distance: float) -> float:
 	var adjusted_distance = max(0.001, distance - _a)
 	var influence = min(1, _b / (adjusted_distance * adjusted_distance))
 	return influence * max_acceleration
 
-func intersect_ray_only(from: Vector3, to: Vector3, objects: Array) -> Dictionary:
-	var one_off_layer := 1 << 31
+func find_closest_surface_point(position: Vector3, shape: CollisionShape) -> Vector3:
+	var p := collision_shape.global_transform.affine_inverse() * position
 	
-	for object in objects:
-		object.collision_layer |= one_off_layer
-		
-	var intersection := get_world().direct_space_state.intersect_ray(from, to, [], one_off_layer, true, true)
+	if shape.shape is CapsuleShape:
+		return collision_shape.global_transform * find_closest_surface_point_capsule(p, collision_shape.shape as CapsuleShape)
+	# ...
+	
+	assert(false, "Not a supported shape.");
+	return Vector3.ZERO
 
-	for object in objects:
-		object.collision_layer ^= one_off_layer
-
-	return intersection
+func find_closest_surface_point_capsule(p: Vector3, shape: CapsuleShape) -> Vector3:
+	# Adapted from https://iquilezles.org/articles/distfunctions/
+	var half_height = shape.height / 2
+	var line_loc := Vector3(0, 0, clamp(p.z, -half_height, half_height));
+	return line_loc + (p - line_loc).normalized() * shape.radius
 
 func get_acceleration_at(position: Vector3) -> Vector3:
 	# FIXME What this really needs is a signed distance function. See: https://github.com/godotengine/godot-proposals/issues/5218
-	var collision := intersect_ray_only(position, global_transform.origin, [collision_body])
+	var collision_point := find_closest_surface_point(position, collision_shape)
 	
-	var difference := (collision['position'] as Vector3) - position
+	var difference := collision_point - position
 	var distance := difference.length()
 	return difference / distance * get_acceleration_at_distance(distance)

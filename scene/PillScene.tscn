@@ -22,6 +22,7 @@ height = 50.0
 transform = Transform( 0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.000900745, 53.1832, 0.068177 )
 
 [node name="Planet" type="StaticBody" parent="."]
+transform = Transform( 0.871975, 0.125103, -0.473295, 0.0738639, 0.922108, 0.379818, 0.483945, -0.366151, 0.794815, 0, 0, 8.27578 )
 
 [node name="Mesh" type="MeshInstance" parent="Planet"]
 mesh = SubResource( 3 )
@@ -29,14 +30,14 @@ mesh = SubResource( 3 )
 [node name="CollisionShape" type="CollisionShape" parent="Planet"]
 shape = SubResource( 4 )
 
-[node name="GravityShaped" type="Area" parent="Planet"]
+[node name="GravityPill" type="Area" parent="Planet"]
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource( 2 )
 start_radius = 2.0
 
-[node name="InfluenceShape" type="CollisionShape" parent="Planet/GravityShaped"]
+[node name="InfluenceShape" type="CollisionShape" parent="Planet/GravityPill"]
 shape = SubResource( 5 )
 
 [node name="Light" type="Spatial" parent="."]
