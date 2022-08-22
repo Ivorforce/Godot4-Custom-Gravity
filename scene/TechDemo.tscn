@@ -103,7 +103,7 @@ max_acceleration = -9.81
 transform = Transform( -4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, -8.48178, 48.8615, 0 )
 
 [node name="Mesh" type="MeshInstance" parent="Screw1"]
-transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 2.4815e-10, 0.00567722, -0.110878 )
+transform = Transform( 1, 0, 0, 0, 1, -8.35189e-23, 0, -8.35188e-23, 1, 2.4815e-10, 0.00567722, -0.110878 )
 mesh = ExtResource( 5 )
 skeleton = NodePath("../..")
 
@@ -111,15 +111,15 @@ skeleton = NodePath("../..")
 transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 2.4815e-10, 0.00567722, -0.110878 )
 shape = SubResource( 4 )
 
-[node name="ScrewGravity" type="Area" parent="Screw1"]
-transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, -0.00380802, -0.00932121, 0 )
+[node name="GravityWell" type="Area" parent="Screw1"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 6 )
-full_rotation_vector = Vector3( -40, 0, 0 )
+full_rotation_length = 40
 
-[node name="BoundingShape" type="CollisionShape" parent="Screw1/ScrewGravity"]
-transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 2.19147e-07, 5.01351, 0 )
+[node name="BoundingShape" type="CollisionShape" parent="Screw1/GravityWell"]
+transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 0, 0, 5 )
 shape = SubResource( 5 )
 
 [node name="Screw2" type="StaticBody" parent="."]
@@ -135,16 +135,14 @@ transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 2.4815e-
 shape = SubResource( 4 )
 
 [node name="GravityWell" type="Area" parent="Screw2"]
-transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, -0.00380802, -0.00932121, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 6 )
-full_rotation_vector = Vector3( 0, -200, 0 )
-start_down = Vector3( 0, 0, 1 )
-is_clockwise = false
+full_rotation_length = 40
 
 [node name="BoundingShape" type="CollisionShape" parent="Screw2/GravityWell"]
-transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 2.19147e-07, 5.01351, 0 )
+transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 0, 0, 5 )
 shape = SubResource( 5 )
 
 [node name="Floor1" type="StaticBody" parent="."]
