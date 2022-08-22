@@ -37,7 +37,6 @@ func find_closest_surface_point_torus(p: Vector3, shape: TorusShape) -> Vector3:
 	return ring_position + (p - ring_position).normalized() * shape.minor_radius
 
 func get_acceleration_at(position: Vector3) -> Vector3:
-	# FIXME What this really needs is a signed distance function. See: https://github.com/godotengine/godot-proposals/issues/5218
 	var collision_point := find_closest_surface_point(position)
 	
 	var difference := collision_point - position

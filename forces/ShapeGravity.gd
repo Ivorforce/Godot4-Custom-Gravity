@@ -22,6 +22,7 @@ func reconfigure_from_params():
 		assert(false, "Not a supported shape.");
 	
 func find_closest_surface_point(position: Vector3) -> Vector3:
+	# Help me get merged! https://github.com/godotengine/godot-proposals/issues/5218
 	var p := global_transform.affine_inverse() * position
 	
 	if inner_shape is CapsuleShape:
@@ -38,7 +39,6 @@ func find_closest_surface_point_capsule(p: Vector3, shape: CapsuleShape) -> Vect
 	return line_loc + (p - line_loc).normalized() * shape.radius
 
 func get_acceleration_at(position: Vector3) -> Vector3:
-	# FIXME What this really needs is a signed distance function. See: https://github.com/godotengine/godot-proposals/issues/5218
 	var collision_point := find_closest_surface_point(position)
 	
 	var difference := collision_point - position
