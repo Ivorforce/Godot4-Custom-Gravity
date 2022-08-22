@@ -4,7 +4,7 @@
 [ext_resource path="res://camera/TechDemoSpace.tres" type="Environment" id=2]
 [ext_resource path="res://forces/ProjectedGravity.gd" type="Script" id=3]
 [ext_resource path="res://scene/sanic.obj" type="ArrayMesh" id=4]
-[ext_resource path="res://scene/bit_screwed.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://scene/screwed.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://forces/ScrewGravity.gd" type="Script" id=6]
 [ext_resource path="res://forces/FieldGravity.gd" type="Script" id=7]
 [ext_resource path="res://forces/GravityFalloffModelShifted.gd" type="Script" id=8]
@@ -102,7 +102,7 @@ max_acceleration = -9.81
 [node name="Screw1" type="StaticBody" parent="."]
 transform = Transform( -4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, -8.48178, 48.8615, 0 )
 
-[node name="bit_screwed" type="MeshInstance" parent="Screw1"]
+[node name="Mesh" type="MeshInstance" parent="Screw1"]
 transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 2.4815e-10, 0.00567722, -0.110878 )
 mesh = ExtResource( 5 )
 skeleton = NodePath("../..")
@@ -125,7 +125,7 @@ shape = SubResource( 5 )
 [node name="Screw2" type="StaticBody" parent="."]
 transform = Transform( -1, 0, 0, 0, -1, 0, 0, 0, -1, -27.0983, 37.9863, -1.9419 )
 
-[node name="bit_screwed" type="MeshInstance" parent="Screw2"]
+[node name="Mesh" type="MeshInstance" parent="Screw2"]
 transform = Transform( 1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 2.4815e-10, 0.00567722, -0.110878 )
 mesh = ExtResource( 5 )
 skeleton = NodePath("../..")
@@ -150,7 +150,7 @@ shape = SubResource( 5 )
 [node name="Floor1" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3736, 47.9755, -0.918947 )
 
-[node name="CSGBox" type="CSGBox" parent="Floor1"]
+[node name="Mesh" type="CSGBox" parent="Floor1"]
 width = 20.0
 height = 20.0
 depth = 0.1
