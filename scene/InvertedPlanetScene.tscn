@@ -43,7 +43,7 @@ shape = SubResource( 6 )
 
 [node name="FalloffModel" type="Node" parent="Planet/GravityWell"]
 script = ExtResource( 4 )
-start_radius = 52.0
+start_radius = 72.0
 max_acceleration = -9.81
 
 [node name="Light" type="Node" parent="."]
