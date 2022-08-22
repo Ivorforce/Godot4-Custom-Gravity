@@ -1,10 +1,10 @@
 extends KinematicBody
 
 export var speed := 15.0
-export var jump_strength := 5.0
+export var jump_strength := 4.0
 
 export var velocity_control_floor := 50.0
-export var velocity_control_air := 10.0
+export var velocity_control_air := 5.0
 
 export var torque_control_floor := 10.0
 export var torque_control_air := 1.0

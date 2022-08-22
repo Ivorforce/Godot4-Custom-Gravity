@@ -37,7 +37,8 @@ shape = SubResource( 7 )
 
 [node name="FalloffModel" type="Node" parent="Planet/GravityWell"]
 script = ExtResource( 4 )
-start_radius = 2.0
+start_radius = 5.0
+half_falloff_offset = 20.0
 
 [node name="Light" type="Node" parent="."]
 

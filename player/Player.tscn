@@ -7,7 +7,7 @@
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.3
-height = 0.3
+height = 0.4
 
 [sub_resource type="CapsuleShape" id=2]
 radius = 0.3
