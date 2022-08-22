@@ -6,7 +6,7 @@
 [ext_resource path="res://scene/sanic.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://scene/screwed.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://forces/ScrewGravity.gd" type="Script" id=6]
-[ext_resource path="res://forces/FieldGravity.gd" type="Script" id=7]
+[ext_resource path="res://forces/StaticGravity.gd" type="Script" id=7]
 [ext_resource path="res://forces/GravityFalloffModelShifted.gd" type="Script" id=8]
 
 [sub_resource type="ConcavePolygonShape" id=3]
