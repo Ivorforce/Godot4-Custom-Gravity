@@ -1,14 +1,23 @@
 extends Spatial
 
+# Need to copy most of ShapeGravity because TorusShape is not a real Shape object.
 const TorusShape = preload("res://shapes/TorusShape.gd")
 
 export var gravity_cutoff = 0.01
 
-export var inner_shape: Shape
+var inner_shape: TorusShape
 onready var bounding_shape: CollisionShape = $BoundingShape
 onready var falloff_model = $FalloffModel
 
+export var major_radius := 50
+export var minor_radius := 15
+
 func _ready():
+	inner_shape = TorusShape.new()
+
+	inner_shape.major_radius = major_radius
+	inner_shape.minor_radius = minor_radius
+	
 	reconfigure_from_params();
 
 func reconfigure_from_params():
@@ -19,28 +28,15 @@ func reconfigure_from_params():
 	
 	# gravity_cutoff = a / (cutoff_distance - b)^2
 	var cutoff_distance = falloff_model.get_distance_for_acceleration(gravity_cutoff)
-	
-	if inner_shape is CapsuleShape:
-		(bounding_shape.shape as CapsuleShape).radius = (inner_shape as CapsuleShape).radius + cutoff_distance
-	if inner_shape is TorusShape:
-		(bounding_shape.shape as SphereShape).radius = (inner_shape as TorusShape).ring_radius + (inner_shape as TorusShape).volume_radius + cutoff_distance
-	else:
-		assert(false, "Not a supported shape.");
+	(bounding_shape.shape as SphereShape).radius = (inner_shape as TorusShape).major_radius + (inner_shape as TorusShape).minor_radius + cutoff_distance
 	
 func find_closest_surface_point(position: Vector3) -> Vector3:
 	var p := global_transform.affine_inverse() * position
-	
-	if inner_shape is CapsuleShape:
-		return global_transform * find_closest_surface_point_capsule(p, inner_shape as CapsuleShape)
-	else:
-		assert(false, "Not a supported shape.");
-		return Vector3.ZERO
+	return global_transform * find_closest_surface_point_torus(p, inner_shape as TorusShape)
 
-func find_closest_surface_point_capsule(p: Vector3, shape: CapsuleShape) -> Vector3:
-	# Adapted from https://iquilezles.org/articles/distfunctions/
-	var half_height = shape.height / 2
-	var line_loc := Vector3(0, 0, clamp(p.z, -half_height, half_height));
-	return line_loc + (p - line_loc).normalized() * shape.radius
+func find_closest_surface_point_torus(p: Vector3, shape: TorusShape) -> Vector3:
+	var ring_position = Vector3(p.x, 0, p.z).normalized() * shape.major_radius
+	return ring_position + (p - ring_position).normalized() * shape.minor_radius
 
 func get_acceleration_at(position: Vector3) -> Vector3:
 	# FIXME What this really needs is a signed distance function. See: https://github.com/godotengine/godot-proposals/issues/5218
