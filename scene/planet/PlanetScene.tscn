@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bppn1jo6uahww"]
+
+[ext_resource type="PackedScene" uid="uid://cdojqe8wlahxs" path="res://player/Player.tscn" id="1_e6wx7"]
+[ext_resource type="Material" uid="uid://bb56vrpwj6p0x" path="res://materials/Stone.tres" id="2_3e4hk"]
+[ext_resource type="Script" path="res://forces/PointGravity.gd" id="3_k6k61"]
+[ext_resource type="Script" path="res://forces/GravityFalloffModelShifted.gd" id="4_rc4l4"]
+[ext_resource type="Environment" uid="uid://dx1vxt3e1e0rc" path="res://camera/EmptySpace.tres" id="5_5kygm"]
+
+[sub_resource type="SphereShape3D" id="3"]
+radius = 50.0
+
+[sub_resource type="SphereShape3D" id="2"]
+
+[node name="Node3D2" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_e6wx7")]
+transform = Transform3D(0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.000900745, 50.9251, 0.068177)
+
+[node name="Planet" type="StaticBody3D" parent="."]
+
+[node name="Mesh" type="CSGSphere3D" parent="Planet"]
+radius = 50.0
+radial_segments = 70
+rings = 70
+material = ExtResource("2_3e4hk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet"]
+shape = SubResource("3")
+
+[node name="GravityWell" type="Area3D" parent="Planet"]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_k6k61")
+
+[node name="BoundingShape" type="CollisionShape3D" parent="Planet/GravityWell"]
+shape = SubResource("2")
+
+[node name="FalloffModel" type="Node" parent="Planet/GravityWell"]
+script = ExtResource("4_rc4l4")
+start_radius = 52.0
+
+[node name="Light3D" type="Node" parent="."]
+
+[node name="Sun" type="DirectionalLight3D" parent="Light3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.454285, 129.014, -0.860413)
+shadow_enabled = true
+
+[node name="LightmapGI" type="LightmapGI" parent="Light3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Light3D"]
+environment = ExtResource("5_5kygm")

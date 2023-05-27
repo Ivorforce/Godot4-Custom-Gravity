@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dd5u8s80ad0gn"]
+
+[ext_resource type="PackedScene" uid="uid://cdojqe8wlahxs" path="res://player/Player.tscn" id="1_sc080"]
+[ext_resource type="Material" uid="uid://bb56vrpwj6p0x" path="res://materials/Stone.tres" id="2_0oq3x"]
+[ext_resource type="Script" path="res://forces/ShapeGravity.gd" id="3_jfmet"]
+[ext_resource type="Script" path="res://forces/GravityFalloffModelShifted.gd" id="4_g1ffx"]
+[ext_resource type="Environment" uid="uid://dx1vxt3e1e0rc" path="res://camera/EmptySpace.tres" id="5_h0xam"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fslgy"]
+material = ExtResource("2_0oq3x")
+radius = 25.0
+height = 100.0
+
+[sub_resource type="CapsuleShape3D" id="4"]
+radius = 25.0
+height = 100.0
+
+[node name="Node3D2" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_sc080")]
+transform = Transform3D(0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.000900745, 35.1094, 0.068177)
+
+[node name="Planet" type="StaticBody3D" parent="."]
+transform = Transform3D(0.764803, 0.640426, 0.0702153, -0.465575, 0.474058, 0.747334, 0.445326, -0.604254, 0.660728, 0, 0, 8.27578)
+
+[node name="Mesh" type="MeshInstance3D" parent="Planet"]
+mesh = SubResource("CapsuleMesh_fslgy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet"]
+shape = SubResource("4")
+
+[node name="GravityWell" type="Area3D" parent="Planet"]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_jfmet")
+
+[node name="InnerShape" type="CollisionShape3D" parent="Planet/GravityWell"]
+shape = SubResource("4")
+
+[node name="FalloffModel" type="Node" parent="Planet/GravityWell"]
+script = ExtResource("4_g1ffx")
+start_radius = 2.0
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Sun" type="DirectionalLight3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.454285, 129.014, -0.860413)
+shadow_enabled = true
+
+[node name="LightmapGI" type="LightmapGI" parent="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Node"]
+environment = ExtResource("5_h0xam")

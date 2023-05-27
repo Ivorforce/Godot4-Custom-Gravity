@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://qwl2oaclwuyp"
+path="res://.godot/imported/screwed.obj-be041fecfb4f9a9fc2dd5c0749cafa08.mesh"
+
+[deps]
+
+files=["res://.godot/imported/screwed.obj-be041fecfb4f9a9fc2dd5c0749cafa08.mesh"]
+
+source_file="res://scene/tech_demo/screwed.obj"
+dest_files=["res://.godot/imported/screwed.obj-be041fecfb4f9a9fc2dd5c0749cafa08.mesh", "res://.godot/imported/screwed.obj-be041fecfb4f9a9fc2dd5c0749cafa08.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
