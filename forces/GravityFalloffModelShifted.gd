@@ -1,8 +1,8 @@
 extends Node
 
-export var start_radius := 1.0
-export var half_falloff_offset := 10.0
-export var max_acceleration := 9.81
+@export var start_radius := 1.0
+@export var half_falloff_offset := 10.0
+@export var max_acceleration := 9.81
 
 # g = b / (d - a)^2
 var _a: float

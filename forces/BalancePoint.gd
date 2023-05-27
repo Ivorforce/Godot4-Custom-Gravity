@@ -1,4 +1,4 @@
-class_name BalancePoint extends Spatial
+class_name BalancePoint extends Node3D
 
 var relevant_forces: Array = []
 

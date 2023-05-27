@@ -1,20 +1,21 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/sanic.obj-b9a150770e0993dbb3eedbe62dced8ab.mesh"
+uid="uid://cfyoit8nqk6po"
+path="res://.godot/imported/sanic.obj-b9a150770e0993dbb3eedbe62dced8ab.mesh"
 
 [deps]
 
-files=[ "res://.import/sanic.obj-b9a150770e0993dbb3eedbe62dced8ab.mesh" ]
+files=["res://.godot/imported/sanic.obj-b9a150770e0993dbb3eedbe62dced8ab.mesh"]
 
 source_file="res://scene/sanic.obj"
-dest_files=[ "res://.import/sanic.obj-b9a150770e0993dbb3eedbe62dced8ab.mesh", "res://.import/sanic.obj-b9a150770e0993dbb3eedbe62dced8ab.mesh" ]
+dest_files=["res://.godot/imported/sanic.obj-b9a150770e0993dbb3eedbe62dced8ab.mesh", "res://.godot/imported/sanic.obj-b9a150770e0993dbb3eedbe62dced8ab.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

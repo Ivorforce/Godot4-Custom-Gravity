@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://mcyx5m81caeg"
+path="res://.godot/imported/isphere.obj-b0f717ab29a73c702dc762f3d54fb8e6.mesh"
+
+[deps]
+
+files=["res://.godot/imported/isphere.obj-b0f717ab29a73c702dc762f3d54fb8e6.mesh"]
+
+source_file="res://scene/isphere.obj"
+dest_files=["res://.godot/imported/isphere.obj-b0f717ab29a73c702dc762f3d54fb8e6.mesh", "res://.godot/imported/isphere.obj-b0f717ab29a73c702dc762f3d54fb8e6.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

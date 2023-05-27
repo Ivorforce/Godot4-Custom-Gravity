@@ -1,8 +1,8 @@
-class_name ScrewGravity extends Spatial
+class_name ScrewGravity extends Node3D
 
-export var full_rotation_length := 1
-export var is_clockwise := true
-export var acceleration := 9.81
+@export var full_rotation_length := 1
+@export var is_clockwise := true
+@export var acceleration := 9.81
 
 func get_acceleration_at(position: Vector3) -> Vector3:
 	var p := global_transform.affine_inverse() * position
@@ -13,4 +13,4 @@ func get_acceleration_at(position: Vector3) -> Vector3:
 	
 	var gravity := Vector3.DOWN * cos(progression) + Vector3.RIGHT * sin(progression)
 
-	return (global_transform.basis.get_rotation_quat() * gravity) * acceleration
+	return (global_transform.basis.get_rotation_quaternion() * gravity) * acceleration

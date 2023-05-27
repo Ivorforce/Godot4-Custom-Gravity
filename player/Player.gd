@@ -1,18 +1,18 @@
-extends KinematicBody
+extends CharacterBody3D
 
-export var speed := 12.0
-export var jump_strength := 4.0
+@export var speed := 12.0
+@export var jump_strength := 4.0
 
-export var velocity_control_floor := 50.0
-export var velocity_control_air := 5.0
+@export var velocity_control_floor := 50.0
+@export var velocity_control_air := 5.0
 
-export var torque_control_floor := 10.0
-export var torque_control_air := 1.0
+@export var torque_control_floor := 10.0
+@export var torque_control_air := 1.0
 
 var _velocity := Vector3.ZERO
 
-onready var _balance_point: BalancePoint = $BalancePoint
-onready var _camera_anchor: CameraAnchor = $CameraAnchor
+@onready var _balance_point: BalancePoint = $BalancePoint
+@onready var _camera_anchor: CameraAnchor = $CameraAnchor
 
 static func get_movement_intention(basis: Basis, up: Vector3, vertical: float, horizontal: float) -> Vector3:
 	if (abs(horizontal) + abs(vertical) < 0.01):
@@ -36,11 +36,15 @@ func _physics_process(delta: float) -> void:
 	if acceleration == Vector3.ZERO:
 		# Weeee floating in free space!
 		# Move tick
-		_velocity = move_and_slide(_velocity, Vector3.UP, true)
+		set_velocity(_velocity)
+		set_up_direction(Vector3.UP)
+		set_floor_stop_on_slope_enabled(true)
+		move_and_slide()
+		_velocity = velocity
 		return
 	
 	var movement_intention := get_movement_intention(
-		get_viewport().get_camera().global_transform.basis,
+		get_viewport().get_camera_3d().global_transform.basis,
 		up,
 		Input.get_action_strength("back") - Input.get_action_strength("forward"),
 		Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -78,7 +82,12 @@ func _physics_process(delta: float) -> void:
 	_velocity += acceleration * delta
 	
 	# Move tick
-	_velocity = move_and_slide_with_snap(_velocity, snap_vector, up, true)
+	set_velocity(_velocity)
+	# TODOConverter40 looks that snap in Godot 4.0 is float, not vector like in Godot 3 - previous value `snap_vector`
+	set_up_direction(up)
+	set_floor_stop_on_slope_enabled(true)
+	move_and_slide()
+	_velocity = velocity
 	
 	var look_intention_horizontal
 	if movement_intention != Vector3.ZERO:
@@ -89,8 +98,8 @@ func _physics_process(delta: float) -> void:
 		look_intention_horizontal -= look_intention_horizontal.project(up)
 	
 	# Basis.looking_at is currently not exposed :(
-	var look_intention := Transform.IDENTITY.looking_at(look_intention_horizontal, up).basis
-	transform = Transform(
+	var look_intention := Transform3D.IDENTITY.looking_at(look_intention_horizontal, up).basis
+	transform = Transform3D(
 		transform.basis.slerp(look_intention, current_torque_control * delta).orthonormalized(),
 		transform.origin
 	)

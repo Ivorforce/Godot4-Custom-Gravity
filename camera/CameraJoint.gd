@@ -1,7 +1,7 @@
-extends Spatial
+extends Node3D
 
-export var mouse_sensitivity := 0.05
-export var pitch_range := Vector2(-80.0, -10.0)
+@export var mouse_sensitivity := 0.05
+@export var pitch_range := Vector2(-80.0, -10.0)
 
 func _ready () -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
