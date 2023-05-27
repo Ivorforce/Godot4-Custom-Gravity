@@ -11,7 +11,7 @@ radius = 50.0
 
 [sub_resource type="SphereShape3D" id="2"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D2" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1")]
 transform = Transform3D(0.999894, 0, 0, 0, 0.999894, 0, 0, 0, 0.999894, 0.000900745, 50.9251, 0.068177)
