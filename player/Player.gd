@@ -84,10 +84,10 @@ func _process_walking(movement_intention: Vector3, velocity_control: float, delt
 	var up := _balance_point.up
 	
 	var desired_velocity_change := movement_intention * speed - velocity
-	# Delete "up" component; we have no control over this
+	# Just in case: delete "up" component.
+	# If we didn't do this, we would stay levitating in the air.
 	desired_velocity_change -= desired_velocity_change.project(up)
-	
-	# Walking
+
 	velocity = velocity.move_toward(
 		velocity + desired_velocity_change,
 		 velocity_control * delta
@@ -102,6 +102,7 @@ func _process_turning(movement_intention: Vector3, torque_control: float, delta:
 	if movement_intention != Vector3.ZERO:
 		look_intention_horizontal = movement_intention
 	else:
+		# If the player provides no input, we want to turn forward, parallel to the floor.
 		look_intention_horizontal = forward - forward.project(up)
 	
 	var look_intention := Basis.IDENTITY.looking_at(look_intention_horizontal, up)
