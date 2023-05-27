@@ -38,6 +38,7 @@ func _physics_process(delta: float) -> void:
 	_camera_anchor.target_down = _balance_point.down
 	set_up_direction(_balance_point.up)
 
+	# Where does the player want to move?
 	var movement_intention := get_movement_intention(
 		get_viewport().get_camera_3d().global_transform.basis,
 		_balance_point.up,
@@ -45,6 +46,7 @@ func _physics_process(delta: float) -> void:
 		Input.get_action_strength("right") - Input.get_action_strength("left")
 	)
 
+	# How much control does the player get over the character?
 	var current_velocity_control: float
 	var current_torque_control: float
 	if self.is_on_floor():
@@ -53,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		current_velocity_control = velocity_control_air
 		current_torque_control = torque_control_air
-		
+	
 	# Jumping
 	self._process_jumping()
 	
