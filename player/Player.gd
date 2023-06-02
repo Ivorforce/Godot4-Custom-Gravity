@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 	self._process_jumping()
 	
 	# Walking
-	_process_walking(movement_intention, current_velocity_control, delta)
+	_process_walking(movement_intention, current_velocity_control * delta)
 	
 	# Forces acting on us
 	velocity += acceleration * delta
@@ -83,7 +83,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	# ... and turn
-	_process_turning(movement_intention, current_torque_control, delta)
+	_process_turning(movement_intention, current_torque_control * delta)
 
 
 func _process_jumping():
@@ -94,7 +94,7 @@ func _process_jumping():
 		velocity += up * jump_strength - velocity.project(up)
 
 
-func _process_walking(movement_intention: Vector3, velocity_control: float, delta: float):
+func _process_walking(movement_intention: Vector3, control: float):
 	var up := _balance_point.up
 	
 	var desired_velocity_change := movement_intention * speed - velocity
@@ -104,11 +104,11 @@ func _process_walking(movement_intention: Vector3, velocity_control: float, delt
 
 	velocity = velocity.move_toward(
 		velocity + desired_velocity_change,
-		 velocity_control * delta
+		 control
 	)
 
 
-func _process_turning(movement_intention: Vector3, torque_control: float, delta: float):
+func _process_turning(movement_intention: Vector3, control: float):
 	var forward := -transform.basis.z
 	var up := _balance_point.up
 	
@@ -121,6 +121,6 @@ func _process_turning(movement_intention: Vector3, torque_control: float, delta:
 	
 	var look_intention := Basis.IDENTITY.looking_at(look_intention_horizontal, up)
 	transform = Transform3D(
-		transform.basis.slerp(look_intention, torque_control * delta).orthonormalized(),
+		transform.basis.slerp(look_intention, control).orthonormalized(),
 		transform.origin
 	)
