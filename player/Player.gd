@@ -12,17 +12,25 @@ extends CharacterBody3D
 @onready var _balance_point: BalancePoint = $BalancePoint
 @onready var _camera_anchor: CameraAnchor = $CameraAnchor
 
-static func get_movement_intention(basis: Basis, up: Vector3, vertical: float, horizontal: float) -> Vector3:
-	if (abs(horizontal) + abs(vertical) < 0.01):
+
+static func get_movement_input() -> Vector2:
+	return Vector2(
+		Input.get_action_strength("back") - Input.get_action_strength("forward"),
+		Input.get_action_strength("right") - Input.get_action_strength("left")
+	)
+
+
+static func project_movement_intention(basis: Basis, up: Vector3, movement_input: Vector2) -> Vector3:
+	if movement_input == Vector2.ZERO:
 		return Vector3.ZERO
 
-	var intention_2d = Vector2(horizontal, vertical)
-	intention_2d = intention_2d.normalized() * min(intention_2d.length(), 1)
+	movement_input = movement_input.normalized() * min(movement_input.length(), 1)
 
 	var up_surface = -up.cross(basis.x).normalized()
 	var right_surface = -up.cross(basis.y).normalized()
 	
-	return up_surface * intention_2d.y + right_surface * intention_2d.x
+	return up_surface * movement_input.y + right_surface * movement_input.x
+
 
 func _physics_process(delta: float) -> void:
 	# Update where we are
@@ -38,12 +46,14 @@ func _physics_process(delta: float) -> void:
 	_camera_anchor.target_down = _balance_point.down
 	set_up_direction(_balance_point.up)
 
+	# What controls is the player inputting?
+	var movement_input := get_movement_input()
+
 	# Where does the player want to move?
-	var movement_intention := get_movement_intention(
+	var movement_intention := project_movement_intention(
 		get_viewport().get_camera_3d().global_transform.basis,
 		_balance_point.up,
-		Input.get_action_strength("back") - Input.get_action_strength("forward"),
-		Input.get_action_strength("right") - Input.get_action_strength("left")
+		movement_input
 	)
 
 	# How much control does the player get over the character?
