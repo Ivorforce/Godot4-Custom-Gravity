@@ -17,7 +17,7 @@ height = 140.0
 
 [sub_resource type="SphereShape3D" id="6"]
 
-[node name="Node3D2" type="Node3D"]
+[node name="Node3D3" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_dmdfy")]
 transform = Transform3D(-0.999894, 8.74135e-08, 0, -8.74135e-08, -0.999894, 0, 0, 0, 0.999894, 0.000900745, 67.7111, 0.0681772)

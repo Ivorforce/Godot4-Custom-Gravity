@@ -14,10 +14,14 @@ extends CharacterBody3D
 
 
 static func get_movement_input() -> Vector2:
-	return Vector2(
-		Input.get_action_strength("back") - Input.get_action_strength("forward"),
-		Input.get_action_strength("right") - Input.get_action_strength("left")
+	var vector := Vector2(
+		Input.get_action_strength("right") - Input.get_action_strength("left"),
+		Input.get_action_strength("back") - Input.get_action_strength("forward")
 	)
+	if vector.length_squared() > 1:
+		return vector.normalized()  # e.g. keyboard input
+	else:
+		return vector
 
 
 static func project_movement_intention(basis: Basis, up: Vector3, movement_input: Vector2) -> Vector3:
