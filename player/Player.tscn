@@ -25,6 +25,7 @@ emission = Color(0.745098, 0.729412, 0.611765, 1)
 emission_energy_multiplier = 0.1
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 0
 script = ExtResource("3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

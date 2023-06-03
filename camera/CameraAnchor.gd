@@ -8,8 +8,8 @@ var adjust_radians_per_second = 0.1
 func _ready () -> void:
 	set_as_top_level(true)
 
-func _process (delta: float) -> void:
-	transform.origin = target_origin
+func _physics_process(delta: float) -> void:
+	transform.origin = transform.origin.lerp(target_origin, delta * 50)
 
 	var camera_down := -transform.basis.y
 
