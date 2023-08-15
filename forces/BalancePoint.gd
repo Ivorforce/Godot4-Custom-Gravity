@@ -3,6 +3,7 @@ class_name BalancePoint extends Node3D
 var relevant_forces: Array = []
 
 var acceleration: Vector3 = Vector3.ZERO
+var acceleration_magnitude: float = 0.0
 var down: Vector3 = Vector3.ZERO
 var up: Vector3 = Vector3.ZERO
 
@@ -11,10 +12,11 @@ func _physics_process(delta):
 	for force in relevant_forces:
 		acceleration += force.get_acceleration_at(global_transform.origin)
 
-	if acceleration == Vector3.ZERO:
-		down = Vector3.ZERO
+	acceleration_magnitude = acceleration.length()
+	if acceleration_magnitude > 0:
+		down = acceleration / acceleration_magnitude
 	else:
-		down = acceleration.normalized()
+		down = Vector3.ZERO
 
 	up = -down
 
