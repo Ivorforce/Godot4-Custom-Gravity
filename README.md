@@ -2,6 +2,8 @@
 
 This repository provides a sample implementation for custom gravity in Godot 4.
 
+[Check out the video I made about this implementation too!](https://youtu.be/7gZzDM-29WQ)
+
 ## How it works
 
 (a detailed explanation will follow in a soon-to-come video)
