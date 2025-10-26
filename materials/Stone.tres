@@ -12,9 +12,9 @@ fractal_gain = 1.033
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p68kq"]
 width = 1024
 height = 1024
-seamless = true
-color_ramp = SubResource("Gradient_myqtx")
 noise = SubResource("FastNoiseLite_jp1en")
+color_ramp = SubResource("Gradient_myqtx")
+seamless = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2qu0e"]
 seed = 2
@@ -22,9 +22,9 @@ seed = 2
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5h5kt"]
 width = 1024
 height = 1024
+noise = SubResource("FastNoiseLite_2qu0e")
 seamless = true
 as_normal_map = true
-noise = SubResource("FastNoiseLite_2qu0e")
 
 [resource]
 albedo_texture = SubResource("NoiseTexture2D_p68kq")

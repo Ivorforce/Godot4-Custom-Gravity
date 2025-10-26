@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://cdojqe8wlahxs"]
 
-[ext_resource type="Script" path="res://camera/CameraAnchor.gd" id="1"]
-[ext_resource type="Script" path="res://camera/CameraJoint.gd" id="2"]
-[ext_resource type="Script" path="res://player/Player.gd" id="3"]
-[ext_resource type="Script" path="res://forces/BalancePoint.gd" id="4"]
+[ext_resource type="Script" uid="uid://fvc5u01xlc1k" path="res://camera/CameraAnchor.gd" id="1"]
+[ext_resource type="Script" uid="uid://jo5ec212o4s6" path="res://camera/CameraJoint.gd" id="2"]
+[ext_resource type="Script" uid="uid://colb6j075wboe" path="res://player/Player.gd" id="3"]
+[ext_resource type="Script" uid="uid://cnjohay4gnh6i" path="res://forces/BalancePoint.gd" id="4"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 

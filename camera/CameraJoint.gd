@@ -8,9 +8,17 @@ func _ready () -> void:
 	rotation_degrees.x = pitch_range.x / 5 * 4 + pitch_range.y / 5 * 1
 		
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 	if event is InputEventMouseMotion:
 		rotation_degrees.x -= event.relative.y * mouse_sensitivity
 		rotation_degrees.x = clamp(rotation_degrees.x, pitch_range.x, pitch_range.y)
 		
 		rotation_degrees.y -= event.relative.x * mouse_sensitivity
 		rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
